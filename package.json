@@ -1,0 +1,21 @@
+{
+  "name": "ecdsa-keychain",
+  "version": "0.0.0",
+  "description": "Library for creating elliptic curve keypairs and deriving child keys",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [],
+  "author": "Halfmoon Labs, Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "bigi": "^1.4.1",
+    "bitcoinjs-lib": "^2.1.4",
+    "create-hmac": "^1.1.4",
+    "ecurve": "^1.0.2"
+  },
+  "devDependencies": {
+    "tape": "^4.4.0"
+  }
+}
