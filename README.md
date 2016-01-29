@@ -1,5 +1,7 @@
 # ECDSA Keychain
 
+A module for taking a bit of entropy and deriving an arbitrarily large number of child keys that are secretly linked until they're revealed and proven to be linked to the parent by the creator.
+
 ### Installation
 
 ```
