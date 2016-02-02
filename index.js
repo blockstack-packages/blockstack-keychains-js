@@ -1,8 +1,9 @@
 'use strict'
 
+var lib = require('./lib/main').default
+
 module.exports = {
-    Keypair: require('./lib/derivation').Keypair,
-    derivePrivateKeypair: require('./lib/derivation').derivePrivateKeypair,
-    derivePublicKeypair: require('./lib/derivation').derivePublicKeypair,
-    getEntropy: require('./lib/utils').getEntropy
+  Keypair:         lib.Keypair,
+  getChildKeypair: lib.getChildKeypair,
+  getEntropy:      lib.getEntropy
 }

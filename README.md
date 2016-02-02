@@ -1,20 +1,26 @@
-# ECDSA Keychain
+# Elliptic Keychain
 
 A module for taking a bit of entropy and deriving an arbitrarily large number of child keys that are secretly linked until they're revealed and proven to be linked to the parent by the creator.
 
 ### Installation
 
 ```
-$ npm install ecdsa-keychain
+$ npm install elliptic-keychain
 ```
 
 ### Import your modules
 
+#### ES6
+
+```es6
+import { getChildKeypair, getEntropy } from 'elliptic-keychain'
+```
+
+#### Javascript
+
 ```js
-var ecdsaKeychain = require('ecdsa-keychain')
-    derivePrivateKeypair = ecdsaKeychain.derivePrivateKeypair,
-    derivePublicKeypair = ecdsaKeychain.derivePublicKeypair,
-    getEntropy = ecdsaKeychain.getEntropy
+var getChildKeypair = require('elliptic-keychain').getChildKeypair,
+    getEntropy = require('elliptic-keychain').getEntropy
 ```
 
 ### Create a parent keypair
@@ -29,7 +35,7 @@ var keypair = new Keypair.makeRandom({ rng: getEntropy }),
 
 ```js
 var childEntropy = getEntropy(32),
-    childPrivateKeypair = derivePrivateKeypair(keypair, childEntropy),
+    childPrivateKeypair = getChildKeypair(keypair, childEntropy),
     childPrivateKeyWIF = childPrivateKeypair.toWIF(),
     childPublicKeyHex = childPrivateKeypair.getPublicKeyBuffer().toString('hex')
 ```
@@ -37,15 +43,17 @@ var childEntropy = getEntropy(32),
 ### Create a child public keypair
 
 ```js
-var childPublicKeypair = derivePublicKeypair(keypair, childEntropy),
+var childPublicKeypair = getChildKeypair(keypair, childEntropy),
     childPublicKeyHex2 = childPublicKeypair.getPublicKeyBuffer().toString('hex')
 ```
 
 ### Compare the derived public keys
 
 ```js
-> console.log(childPublicKeyHex, childPublicKeyHex2)
-true
+> console.log(childPublicKeyHex)
+027134e91d942ab2711783be21a104b0ca3ecc5bd4bba7919fb4f67d9f3a17125a
+> console.log(childPublicKeyHex2)
+027134e91d942ab2711783be21a104b0ca3ecc5bd4bba7919fb4f67d9f3a17125a
 ```
 
 :tada:
