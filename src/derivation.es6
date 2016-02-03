@@ -1,18 +1,18 @@
+import 'core-js/shim'
 import createHmac from 'create-hmac'
 import BigInteger from 'bigi'
 import { ECPair } from 'bitcoinjs-lib'
 import ecurve from 'ecurve'
-import { randomBytes } from 'crypto'
 
 const secp256k1 = ecurve.getCurveByName('secp256k1')
 
 function getChildKeyMultiplier(parentKeypair, entropyBuffer) {
-  let parentPublicKeyBuffer = parentKeypair.getPublicKeyBuffer()
-  let childKeyMultiplier = BigInteger.fromBuffer(
-        createHmac('sha256',
-          Buffer.concat([parentPublicKeyBuffer, entropyBuffer])
-        ).digest()
-      )
+  const parentPublicKeyBuffer = parentKeypair.getPublicKeyBuffer()
+  const childKeyMultiplier = BigInteger.fromBuffer(
+    createHmac('sha256',
+      Buffer.concat([parentPublicKeyBuffer, entropyBuffer])
+    ).digest()
+  )
 
   if (childKeyMultiplier.compareTo(secp256k1.n) >= 0) {
     throw new TypeError('Entropy is resulting in an invalid child scalar')
@@ -26,9 +26,9 @@ function getChildPrivateKeypair(parentKeypair, entropyBuffer) {
     throw new TypeError('Parent keypair must have a private key')
   }
 
-  let childKeyMultiplier = getChildKeyMultiplier(parentKeypair, entropyBuffer),
-      parentSecretExponent = parentKeypair.d,
-      childSecretExponent = childKeyMultiplier.add(parentSecretExponent).mod(secp256k1.n)
+  const childKeyMultiplier = getChildKeyMultiplier(parentKeypair, entropyBuffer),
+        parentSecretExponent = parentKeypair.d,
+        childSecretExponent = childKeyMultiplier.add(parentSecretExponent).mod(secp256k1.n)
 
   if (childSecretExponent.signum() === 0) {
     throw new TypeError('Entropy is resulting in an invalid child private key')
@@ -42,9 +42,9 @@ function getChildPublicKeypair(parentKeypair, entropyBuffer) {
     throw new TypeError('Parent keypair must have a public key')
   }
 
-  let childKeyMultiplier = getChildKeyMultiplier(parentKeypair, entropyBuffer),
-      parentPoint = parentKeypair.Q,
-      childPoint = secp256k1.G.multiply(childKeyMultiplier).add(parentPoint)
+  const childKeyMultiplier = getChildKeyMultiplier(parentKeypair, entropyBuffer),
+        parentPoint = parentKeypair.Q,
+        childPoint = secp256k1.G.multiply(childKeyMultiplier).add(parentPoint)
 
   if (secp256k1.isInfinity(childPoint)) {
     throw new TypeError('Entropy is resulting in an invalid child public key')
@@ -63,13 +63,4 @@ function getChildKeypair(parentKeypair, entropyBuffer) {
   }
 }
 
-function getEntropy(numberOfBytes) {
-  if (!numberOfBytes) numberOfBytes = 32
-  return randomBytes(numberOfBytes)
-}
-
-export default {
-  Keypair: ECPair,
-  getChildKeypair: getChildKeypair,
-  getEntropy: getEntropy
-}
+export default getChildKeypair
