@@ -67,7 +67,8 @@ var privateKeychain = new PrivateKeychain()
 
 ```js
 var publicKeychain = privateKeychain.publicKeychain()
-var publicKeychain2 = new PublicKeychain('023db6b4e3cb22097a9b6b9c82ff6becb8cb01561fd46c3484abf22ff4dc30ee58')
+var publicKeyString = '023db6b4e3cb22097a9b6b9c82ff6becb8cb01561fd46c3484abf22ff4dc30ee58'
+var publicKeychain2 = new PublicKeychain(publicKeyString)
 ```
 
 ### Create a child by supplying entropy
@@ -82,7 +83,9 @@ var publicChildKeychain2 = privateChildKeychain.publicKeychain()
 Note that the independently derived public child keychains should be equal
 
 ```js
-> console.log(publicChildKeychain.publicKey('hex') === publicChildKeychain2.publicKey('hex'))
+> var publicKey1 = publicChildKeychain.publicKey('hex')
+> var publicKey2 = publicChildKeychain2.publicKey('hex')
+> console.log(publicKey1 === publicKey2)
 true
 ```
 
@@ -96,7 +99,9 @@ var firstPublicChildKeychain = publicKeychain.publiclyEnumeratedChild(0)
 Note that the privately-enumerated child should not correspond to the publicly-enumerated child
 
 ```js
-> console.log(firstPrivateChildKeychain.publicKeychain().publicKey('hex') === firstPublicChildKeychain.publicKey('hex'))
+> var publicKey1 = firstPrivateChildKeychain.publicKeychain().publicKey('hex')
+> var publicKey2 = firstPublicChildKeychain.publicKey('hex')
+> console.log(publicKey1 === publicKey2)
 false
 ```
 
@@ -110,6 +115,8 @@ var namedPublicChildKeychain = publicKeychain.publiclyNamedChild('home-laptop-1'
 Note that the privately-named child should not correspond to the publicly-named child
 
 ```js
-> console.log(namedPrivateChildKeychain.publicKeychain().publicKey('hex') === namedPublicChildKeychain.publicKey('hex'))
+> var publicKey1 = namedPrivateChildKeychain.publicKeychain().publicKey('hex')
+> var publicKey2 = namedPublicChildKeychain.publicKey('hex')
+> console.log(publicKey1 === publicKey2)
 false
 ```
