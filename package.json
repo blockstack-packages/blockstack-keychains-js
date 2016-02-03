@@ -1,6 +1,6 @@
 {
   "name": "elliptic-keychain",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Library for creating elliptic curve keypairs and deriving child keys",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,10 @@
     "test": "npm run compile; node test.js",
     "prepublish": "npm run compile"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blockstack/elliptic-keychain"
+  },
   "author": "Halfmoon Labs, Inc.",
   "license": "MIT",
   "dependencies": {
@@ -22,5 +25,58 @@
     "babel-cli": "^6.4.5",
     "babel-preset-es2015": "^6.3.13",
     "tape": "^4.4.0"
-  }
+  },
+  "keywords": [
+    "key",
+    "keys",
+    "keychain",
+    "keychains",
+    "hd",
+    "hd key",
+    "hd keys",
+    "hierarchical",
+    "deterministic",
+    "hierarchical deterministic",
+    "hierarchical key",
+    "hierarchical keychain",
+    "hierarchical keychains",
+    "deterministic key",
+    "deterministic keychain",
+    "deterministic keychains",
+    "hierarchical deterministic key",
+    "hierarchical deterministic keychain",
+    "hierarchical deterministic keychains",
+    "bitcoin",
+    "bitcoin key",
+    "bitcoin keys",
+    "bitcoin address",
+    "bitcoin addresses",
+    "bip32",
+    "bip 32",
+    "bip 32 keys"
+    "bip32 keys",
+    "bip44",
+    "bip 44",
+    "bip 44 keys"
+    "bip44 keys",
+    "ecdsa",
+    "elliptic",
+    "elliptic curve",
+    "ecdsa key",
+    "ecdsa keys",
+    "ecdsa keychain",
+    "private",
+    "public",
+    "private key",
+    "private keys",
+    "public key",
+    "public keys",
+    "lockchain",
+    "keylocker",
+    "keychain manager",
+    "crypto",
+    "cryptography",
+    "bitcoin crypto",
+    "bitcoin cryptography"
+  ]
 }
