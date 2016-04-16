@@ -1,5 +1,6 @@
 # Elliptic Keychain
 
+[![CircleCI](https://img.shields.io/circleci/project/blockstack/elliptic-keychain-js/master.svg)](https://circleci.com/gh/blockstack/elliptic-keychain-js/tree/master)
 [![npm](https://img.shields.io/npm/l/elliptic-keychain.svg)](https://www.npmjs.com/package/elliptic-keychain)
 [![npm](https://img.shields.io/npm/v/elliptic-keychain.svg)](https://www.npmjs.com/package/elliptic-keychain)
 [![npm](https://img.shields.io/npm/dm/elliptic-keychain.svg)](https://www.npmjs.com/package/elliptic-keychain)
