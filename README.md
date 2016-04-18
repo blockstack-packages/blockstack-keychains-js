@@ -1,4 +1,4 @@
-# Blockstack Keychain
+# Blockstack Keychain JS
 
 [![CircleCI](https://img.shields.io/circleci/project/blockstack/blockstack-keychain-js/master.svg)](https://circleci.com/gh/blockstack/blockstack-keychain-js/tree/master)
 [![npm](https://img.shields.io/npm/l/blockstack-keychain.svg)](https://www.npmjs.com/package/blockstack-keychain)
