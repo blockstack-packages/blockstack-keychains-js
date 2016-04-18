@@ -1,5 +1,5 @@
 {
-  "name": "elliptic-keychain",
+  "name": "blockstack-keychain",
   "version": "0.0.2",
   "description": "Library for creating elliptic curve keypairs and deriving child keys",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blockstack/elliptic-keychain"
+    "url": "git+https://github.com/blockstack/blockstack-keychain-js"
   },
   "author": "Halfmoon Labs, Inc.",
   "license": "MIT",

@@ -1,9 +1,9 @@
-# Elliptic Keychain
+# Blockstack Keychain
 
-[![CircleCI](https://img.shields.io/circleci/project/blockstack/elliptic-keychain-js/master.svg)](https://circleci.com/gh/blockstack/elliptic-keychain-js/tree/master)
-[![npm](https://img.shields.io/npm/l/elliptic-keychain.svg)](https://www.npmjs.com/package/elliptic-keychain)
-[![npm](https://img.shields.io/npm/v/elliptic-keychain.svg)](https://www.npmjs.com/package/elliptic-keychain)
-[![npm](https://img.shields.io/npm/dm/elliptic-keychain.svg)](https://www.npmjs.com/package/elliptic-keychain)
+[![CircleCI](https://img.shields.io/circleci/project/blockstack/blockstack-keychain-js/master.svg)](https://circleci.com/gh/blockstack/blockstack-keychain-js/tree/master)
+[![npm](https://img.shields.io/npm/l/blockstack-keychain.svg)](https://www.npmjs.com/package/blockstack-keychain)
+[![npm](https://img.shields.io/npm/v/blockstack-keychain.svg)](https://www.npmjs.com/package/blockstack-keychain)
+[![npm](https://img.shields.io/npm/dm/blockstack-keychain.svg)](https://www.npmjs.com/package/blockstack-keychain)
 [![Slack](http://slack.blockstack.org/badge.svg)](http://slack.blockstack.org/)
 
 A library for effective private and public keychain management.
@@ -36,7 +36,7 @@ Method 6 can be used to create a bunch of children that can be accessed/re-deriv
 ### Installation
 
 ```
-$ npm install elliptic-keychain
+$ npm install blockstack-keychain
 ```
 
 ### Import your modules
@@ -44,18 +44,17 @@ $ npm install elliptic-keychain
 #### ES6
 
 ```es6
-import {
-    PrivateKeychain, PublicKeychain, getChildKeypair, getEntropy
-} from 'elliptic-keychain'
+import { PrivateKeychain, PublicKeychain, getChildKeypair, getEntropy } from 'blockstack-keychain'
 ```
 
 #### Javascript (ES5)
 
 ```js
-var PrivateKeychain = require('elliptic-keychain').PrivateKeychain,
-    PublicKeychain = require('elliptic-keychain').PublicKeychain,
-    getEntropy = require('elliptic-keychain').getEntropy,
-    getChildKeypair = require('elliptic-keychain').getChildKeypair
+var blockstackKeychain = require('blockstack-keychain')
+var PrivateKeychain = blockstackKeychain.PrivateKeychain,
+    PublicKeychain = blockstackKeychain.PublicKeychain,
+    getEntropy = blockstackKeychain.getEntropy,
+    getChildKeypair = blockstackKeychain.getChildKeypair
 ```
 
 ### Create a private keychain
