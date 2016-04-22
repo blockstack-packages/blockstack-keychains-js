@@ -1,9 +1,10 @@
 import 'core-js/shim'
 import { ECPair, message as messageSigner, crypto as hashing } from 'bitcoinjs-lib'
+import BigInteger from 'bigi'
+import bip39 from 'bip39'
 import { getEntropy, isWIF, numberToEntropy } from './utils'
 import { getChildKeypair } from './derivation'
 import { PublicKeychain } from './publicKeychain'
-import bip39 from 'bip39'
 
 export class PrivateKeychain {
   constructor(privateKey) {
@@ -12,12 +13,24 @@ export class PrivateKeychain {
     } else {
       if (privateKey instanceof ECPair) {
         this.ecPair = privateKey
+      } else if (privateKey instanceof Buffer) {
+        const privateKeyBigInteger = BigInteger.fromBuffer(privateKey)
+        this.ecPair = new ECPair(privateKeyBigInteger, null, {})
       } else if (isWIF(privateKey)) {
         this.ecPair = new ECPair.fromWIF(privateKey)
+      } else if (typeof privateKey === 'string') {
+        const privateKeyBuffer = new Buffer(privateKey, 'hex'),
+              privateKeyBigInteger = BigInteger.fromBuffer(privateKeyBuffer)
+        this.ecPair = new ECPair(privateKeyBigInteger, null, {})
       } else {
-        this.ecPair = new ECPair(privateKey, null, {})
+        throw new Error('Invalid private key format')
       }
     }
+  }
+
+  static fromMnemonic(mnemonic) {
+    const privateKey = bip39.mnemonicToEntropy(mnemonic)
+    return new PrivateKeychain(privateKey)
   }
 
   publicKeychain() {

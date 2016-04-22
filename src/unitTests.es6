@@ -38,7 +38,7 @@ test('deriveKeypair', function(t) {
 })
 
 test('PrivateKeychain', function(t) {
-    t.plan(18)
+    t.plan(20)
 
     let privateKeychain = new PrivateKeychain()
     t.ok(privateKeychain instanceof PrivateKeychain, 'PrivateKeychain should have been created')
@@ -86,6 +86,10 @@ test('PrivateKeychain', function(t) {
     let recoveredPrivateKey = bip39.mnemonicToEntropy(mnemonic)
     t.ok(recoveredPrivateKey, 'Private key should have been recovered from mnemonic')
     t.equal(privateKeychain.privateKey('hex'), recoveredPrivateKey, 'Private key recovered from mnemonic should match the original')
+
+    let privateKeychainFromMnemonic = PrivateKeychain.fromMnemonic(mnemonic)
+    t.ok(privateKeychainFromMnemonic, 'Private keychain should have been created from mnemonic')
+    t.equal(privateKeychainFromMnemonic.privateKey('hex'), privateKeychain.privateKey('hex'), 'Recovered private keychain should equal original')
 })
 
 test('PublicKeychain', function(t) {
