@@ -14,6 +14,24 @@ A library for effective private and public keychain management.
 $ npm install blockstack-keychains
 ```
 
+### Importing
+
+#### ES6
+
+```es6
+import { PrivateKeychain, PublicKeychain, getChildKeypair, getEntropy } from 'blockstack-keychains'
+```
+
+#### Javascript (ES5)
+
+```es6
+var blockstackKeychains = require('blockstack-keychains')
+var PrivateKeychain = blockstackKeychains.PrivateKeychain,
+    PublicKeychain = blockstackKeychains.PublicKeychain,
+    getEntropy = blockstackKeychains.getEntropy,
+    getChildKeypair = blockstackKeychains.getChildKeypair
+```
+
 ### Overview
 
 This library provides a powerful key derivation interface that is based on the creation of private and public keychains.
@@ -41,31 +59,13 @@ Method 5 can be used to enumerate a bunch of children and be certain that everyo
 
 Method 6 can be used to create a bunch of children that can be accessed/re-derived by name.
 
-### Import your modules
-
-#### ES6
-
-```es6
-import { PrivateKeychain, PublicKeychain, getChildKeypair, getEntropy } from 'blockstack-keychains'
-```
-
-#### Javascript (ES5)
-
-```es6
-let blockstackKeychainss = require('blockstack-keychains')
-let PrivateKeychain = blockstackKeychains.PrivateKeychain,
-    PublicKeychain = blockstackKeychains.PublicKeychain,
-    getEntropy = blockstackKeychains.getEntropy,
-    getChildKeypair = blockstackKeychains.getChildKeypair
-```
-
-### Create a private keychain
+### Private Keychains
 
 ```es6
 let privateKeychain = new PrivateKeychain()
 ```
 
-### Create a public keychain
+### Public Keychains
 
 ```es6
 let publicKeychain = privateKeychain.publicKeychain()
@@ -73,7 +73,7 @@ let publicKeyString = '023db6b4e3cb22097a9b6b9c82ff6becb8cb01561fd46c3484abf22ff
 let publicKeychain2 = new PublicKeychain(publicKeyString)
 ```
 
-### Create a child by supplying entropy
+### Entropy-derived Child Keychains
 
 ```es6
 let entropy = getEntropy(32)
@@ -82,7 +82,7 @@ let publicChildKeychain = publicKeychain.child(entropy)
 let publicChildKeychain2 = privateChildKeychain.publicKeychain()
 ```
 
-Note that the independently derived public child keychains should be equal
+Note that the independently derived public child keychains should be equal:
 
 ```es6
 let publicKey1 = publicChildKeychain.publicKey('hex')
@@ -91,7 +91,7 @@ console.log(publicKey1 === publicKey2)
 true
 ```
 
-### Create enumerated child keychains
+### Enumerated Child Keychains
 
 ```es6
 let firstPrivateChildKeychain = privateKeychain.privatelyEnumeratedChild(0)
@@ -107,7 +107,7 @@ console.log(publicKey1 === publicKey2)
 false
 ```
 
-### Create named child keychains
+### Named Child Keychains
 
 ```es6
 let namedPrivateChildKeychain = privateKeychain.privatelyNamedChild('home-laptop-1')
