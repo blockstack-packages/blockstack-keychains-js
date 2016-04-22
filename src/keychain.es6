@@ -1,14 +1,10 @@
 import 'core-js/shim'
-import {
-  ECPair,
-  message as messageSigner,
-  crypto as hashing
-} from 'bitcoinjs-lib'
+import { ECPair, message as messageSigner, crypto as hashing } from 'bitcoinjs-lib'
 import bs58check from 'bs58check'
 import { getEntropy } from './utils'
-import getChildKeypair from './derivation'
+import { getChildKeypair } from './derivation'
 
-function isWIF(privateKeyString) {
+export function isWIF(privateKeyString) {
   let isValid = true
   try {
     bs58check.decode(privateKeyString)
@@ -18,7 +14,7 @@ function isWIF(privateKeyString) {
   return isValid
 }
 
-function numberToEntropy(baseBuffer, index) {
+export function numberToEntropy(baseBuffer, index) {
   if (!typeof index === 'number') {
     throw new Error('Index must be a number')
   }
@@ -35,7 +31,7 @@ function numberToEntropy(baseBuffer, index) {
   return entropy
 }
 
-class PrivateKeychain {
+export class PrivateKeychain {
   constructor(privateKey) {
     if (!privateKey) {
       this.ecPair = new ECPair.makeRandom({ rng: getEntropy })
@@ -100,7 +96,7 @@ class PrivateKeychain {
   }
 }
 
-class PublicKeychain {
+export class PublicKeychain {
   constructor(publicKey) {
     if (publicKey instanceof ECPair) {
       this.ecPair = publicKey
@@ -160,10 +156,4 @@ class PublicKeychain {
     )
     return this.child(entropy)
   }
-}
-
-export default {
-  PrivateKeychain: PrivateKeychain,
-  PublicKeychain: PublicKeychain,
-  numberToEntropy: numberToEntropy
 }

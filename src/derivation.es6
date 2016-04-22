@@ -53,7 +53,7 @@ function getChildPublicKeypair(parentKeypair, entropyBuffer) {
   return new ECPair(null, childPoint, {})
 }
 
-function getChildKeypair(parentKeypair, entropyBuffer) {
+export function getChildKeypair(parentKeypair, entropyBuffer) {
   if (parentKeypair.d) {
     // parent keypair has both a private key and a public key
     return getChildPrivateKeypair(parentKeypair, entropyBuffer)
@@ -62,5 +62,3 @@ function getChildKeypair(parentKeypair, entropyBuffer) {
     return getChildPublicKeypair(parentKeypair, entropyBuffer)
   }
 }
-
-export default getChildKeypair
