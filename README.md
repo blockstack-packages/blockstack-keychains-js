@@ -65,12 +65,32 @@ Method 6 can be used to create a bunch of children that can be accessed/re-deriv
 let privateKeychain = new PrivateKeychain()
 ```
 
+### Private Keys
+
+```es6
+let privateKey = privateKeychain.privateKey('hex')
+```
+
 ### Public Keychains
 
 ```es6
 let publicKeychain = privateKeychain.publicKeychain()
-let publicKeyString = '023db6b4e3cb22097a9b6b9c82ff6becb8cb01561fd46c3484abf22ff4dc30ee58'
-let publicKeychain2 = new PublicKeychain(publicKeyString)
+let publicKeyString = '023db6b4e3cb22097a9b6b9c82ff6becb8cb01561fd46c3484abf22ff4dc30ee58',
+    publicKeychain2 = new PublicKeychain(publicKeyString)
+```
+
+### Public Keys
+
+```es6
+let publicKey = publicKeychain.publicKey('hex')
+```
+
+### Mnemonics
+
+```es6
+let mnemonic = privateKeychain.mnemonic()
+console.log(mnemonic)
+'aim elbow hungry involve ranch source car connect come wasp spread pet board welcome give garden virtual goose juice today over illness shove slam'
 ```
 
 ### Entropy-derived Child Keychains
