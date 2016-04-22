@@ -1,12 +1,20 @@
-# Blockstack Keychain JS
+# Blockstack Keychains JS
 
-[![CircleCI](https://img.shields.io/circleci/project/blockstack/blockstack-keychain-js/master.svg)](https://circleci.com/gh/blockstack/blockstack-keychain-js/tree/master)
-[![npm](https://img.shields.io/npm/l/blockstack-keychain.svg)](https://www.npmjs.com/package/blockstack-keychain)
-[![npm](https://img.shields.io/npm/v/blockstack-keychain.svg)](https://www.npmjs.com/package/blockstack-keychain)
-[![npm](https://img.shields.io/npm/dm/blockstack-keychain.svg)](https://www.npmjs.com/package/blockstack-keychain)
+[![CircleCI](https://img.shields.io/circleci/project/blockstack/blockstack-keychains-js/master.svg)](https://circleci.com/gh/blockstack/blockstack-keychains-js/tree/master)
+[![npm](https://img.shields.io/npm/l/blockstack-keychains.svg)](https://www.npmjs.com/package/blockstack-keychains)
+[![npm](https://img.shields.io/npm/v/blockstack-keychains.svg)](https://www.npmjs.com/package/blockstack-keychains)
+[![npm](https://img.shields.io/npm/dm/blockstack-keychains.svg)](https://www.npmjs.com/package/blockstack-keychains)
 [![Slack](http://slack.blockstack.org/badge.svg)](http://slack.blockstack.org/)
 
 A library for effective private and public keychain management.
+
+### Installation
+
+```
+$ npm install blockstack-keychains
+```
+
+### Overview
 
 This library provides a powerful key derivation interface that is based on the creation of private and public keychains.
 
@@ -33,90 +41,84 @@ Method 5 can be used to enumerate a bunch of children and be certain that everyo
 
 Method 6 can be used to create a bunch of children that can be accessed/re-derived by name.
 
-### Installation
-
-```
-$ npm install blockstack-keychain
-```
-
 ### Import your modules
 
 #### ES6
 
 ```es6
-import { PrivateKeychain, PublicKeychain, getChildKeypair, getEntropy } from 'blockstack-keychain'
+import { PrivateKeychain, PublicKeychain, getChildKeypair, getEntropy } from 'blockstack-keychains'
 ```
 
 #### Javascript (ES5)
 
-```js
-var blockstackKeychain = require('blockstack-keychain')
-var PrivateKeychain = blockstackKeychain.PrivateKeychain,
-    PublicKeychain = blockstackKeychain.PublicKeychain,
-    getEntropy = blockstackKeychain.getEntropy,
-    getChildKeypair = blockstackKeychain.getChildKeypair
+```es6
+let blockstackKeychainss = require('blockstack-keychains')
+let PrivateKeychain = blockstackKeychains.PrivateKeychain,
+    PublicKeychain = blockstackKeychains.PublicKeychain,
+    getEntropy = blockstackKeychains.getEntropy,
+    getChildKeypair = blockstackKeychains.getChildKeypair
 ```
 
 ### Create a private keychain
 
-```js
-var privateKeychain = new PrivateKeychain()
+```es6
+let privateKeychain = new PrivateKeychain()
 ```
 
 ### Create a public keychain
 
-```js
-var publicKeychain = privateKeychain.publicKeychain()
-var publicKeyString = '023db6b4e3cb22097a9b6b9c82ff6becb8cb01561fd46c3484abf22ff4dc30ee58'
-var publicKeychain2 = new PublicKeychain(publicKeyString)
+```es6
+let publicKeychain = privateKeychain.publicKeychain()
+let publicKeyString = '023db6b4e3cb22097a9b6b9c82ff6becb8cb01561fd46c3484abf22ff4dc30ee58'
+let publicKeychain2 = new PublicKeychain(publicKeyString)
 ```
 
 ### Create a child by supplying entropy
 
-```js
-var entropy = getEntropy(32)
-var privateChildKeychain = privateKeychain.child(entropy)
-var publicChildKeychain = publicKeychain.child(entropy)
-var publicChildKeychain2 = privateChildKeychain.publicKeychain()
+```es6
+let entropy = getEntropy(32)
+let privateChildKeychain = privateKeychain.child(entropy)
+let publicChildKeychain = publicKeychain.child(entropy)
+let publicChildKeychain2 = privateChildKeychain.publicKeychain()
 ```
 
 Note that the independently derived public child keychains should be equal
 
-```js
-> var publicKey1 = publicChildKeychain.publicKey('hex')
-> var publicKey2 = publicChildKeychain2.publicKey('hex')
-> console.log(publicKey1 === publicKey2)
+```es6
+let publicKey1 = publicChildKeychain.publicKey('hex')
+let publicKey2 = publicChildKeychain2.publicKey('hex')
+console.log(publicKey1 === publicKey2)
 true
 ```
 
 ### Create enumerated child keychains
 
-```js
-var firstPrivateChildKeychain = privateKeychain.privatelyEnumeratedChild(0)
-var firstPublicChildKeychain = publicKeychain.publiclyEnumeratedChild(0)
+```es6
+let firstPrivateChildKeychain = privateKeychain.privatelyEnumeratedChild(0)
+let firstPublicChildKeychain = publicKeychain.publiclyEnumeratedChild(0)
 ```
 
 Note that the privately-enumerated child should not correspond to the publicly-enumerated child
 
-```js
-> var publicKey1 = firstPrivateChildKeychain.publicKeychain().publicKey('hex')
-> var publicKey2 = firstPublicChildKeychain.publicKey('hex')
-> console.log(publicKey1 === publicKey2)
+```es6
+let publicKey1 = firstPrivateChildKeychain.publicKeychain().publicKey('hex')
+let publicKey2 = firstPublicChildKeychain.publicKey('hex')
+console.log(publicKey1 === publicKey2)
 false
 ```
 
 ### Create named child keychains
 
-```js
-var namedPrivateChildKeychain = privateKeychain.privatelyNamedChild('home-laptop-1')
-var namedPublicChildKeychain = publicKeychain.publiclyNamedChild('home-laptop-1')
+```es6
+let namedPrivateChildKeychain = privateKeychain.privatelyNamedChild('home-laptop-1')
+let namedPublicChildKeychain = publicKeychain.publiclyNamedChild('home-laptop-1')
 ```
 
 Note that the privately-named child should not correspond to the publicly-named child
 
-```js
-> var publicKey1 = namedPrivateChildKeychain.publicKeychain().publicKey('hex')
-> var publicKey2 = namedPublicChildKeychain.publicKey('hex')
-> console.log(publicKey1 === publicKey2)
+```es6
+let publicKey1 = namedPrivateChildKeychain.publicKeychain().publicKey('hex')
+let publicKey2 = namedPublicChildKeychain.publicKey('hex')
+console.log(publicKey1 === publicKey2)
 false
 ```
