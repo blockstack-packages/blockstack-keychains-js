@@ -3,6 +3,7 @@ import { ECPair, message as messageSigner, crypto as hashing } from 'bitcoinjs-l
 import bs58check from 'bs58check'
 import { getEntropy } from './utils'
 import { getChildKeypair } from './derivation'
+import bip39 from 'bip39'
 
 export function isWIF(privateKeyString) {
   let isValid = true
@@ -59,6 +60,10 @@ export class PrivateKeychain {
     } else {
       throw new Error('Format not supported')
     }
+  }
+
+  mnemonic() {
+    return bip39.entropyToMnemonic(this.privateKey('hex'))
   }
 
   wif() {
