@@ -1,6 +1,6 @@
 {
   "name": "blockstack-keychains",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Library for creating elliptic curve keypairs and deriving child keys",
   "main": "lib/index",
   "scripts": {
@@ -21,7 +21,7 @@
     "bs58check": "^1.0.8",
     "core-js": "^2.0.3",
     "create-hmac": "^1.1.4",
-    "ecurve": "^1.0.2"
+    "ecurve": "git+ssh://git@github.com/shea256/ecurve.git"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
