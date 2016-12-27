@@ -17,11 +17,11 @@
   "dependencies": {
     "bigi": "^1.4.1",
     "bip39": "^2.2.0",
-    "bitcoinjs-lib": "git+ssh://git@github.com/shea256/bitcoinjs-lib.git",
+    "bitcoinjs-lib": "https://github.com/shea256/bitcoinjs-lib.git",
     "bs58check": "^1.0.8",
     "core-js": "^2.0.3",
     "create-hmac": "^1.1.4",
-    "ecurve": "git+ssh://git@github.com/shea256/ecurve.git"
+    "ecurve": "https://github.com/shea256/ecurve.git"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
