@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/l/blockstack-keychains.svg)](https://www.npmjs.com/package/blockstack-keychains)
 [![npm](https://img.shields.io/npm/v/blockstack-keychains.svg)](https://www.npmjs.com/package/blockstack-keychains)
 [![npm](https://img.shields.io/npm/dm/blockstack-keychains.svg)](https://www.npmjs.com/package/blockstack-keychains)
-[![Slack](http://slack.blockstack.org/badge.svg)](http://slack.blockstack.org/)
+[![Slack](http://chat.blockstack.org/badge.svg)](http://chat.blockstack.org/)
 
 A library for effective private and public keychain management.
 
