@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/blockstack/blockstack-keychain-js"
   },
-  "author": "Halfmoon Labs, Inc.",
+  "author": "Blockstack Inc.",
   "license": "MIT",
   "dependencies": {
     "bigi": "^1.4.1",
